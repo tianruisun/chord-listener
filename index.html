@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chord Listener</title><meta name="theme-color" content="#1d1a16">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Chords">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/icon-192.png"><link rel="icon" href="./icons/icon-192.png">
+<style>
+:root{--bg:#1d1a16;--card:#2a2520;--amber:#f2a93b;--mute:#b9ad9c;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff}
+main{max-width:34rem;margin:0 auto;padding:max(1rem,env(safe-area-inset-top)) 1.1rem max(1.5rem,env(safe-area-inset-bottom))}
+h1{font:800 1.8rem/1 Georgia,serif;color:var(--amber);margin:.5rem 0 .4rem}p{color:var(--mute);line-height:1.5}
+.btn{display:block;width:100%;margin:.7rem 0;padding:1rem;border:0;border-radius:.8rem;font:700 1rem inherit;background:var(--amber);color:#1d1a16;text-align:center;cursor:pointer}
+.btn.alt{background:var(--card);color:#fff;border:2px solid #4a4238}
+input[type=file]{display:none}.btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+#out h2{font-size:1.1rem;margin:1.2rem 0 .3rem}#tl{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.6rem}
+.seg{background:var(--card);border-radius:.6rem;padding:.5rem .8rem;min-width:4.2rem;text-align:center}
+.seg b{display:block;font-size:1.3rem;color:var(--amber)}.seg span{font-size:.8rem;color:var(--mute)}
+</style></head><body><main>
+<h1>Chord Listener</h1>
+<p>Upload a recording or play a song near your microphone. The app listens and shows the chords it hears.</p>
+<label class="btn" for="file">Choose an audio file</label><input id="file" type="file" accept="audio/*">
+<button id="rec" class="btn alt">Record from microphone</button>
+<p id="status" role="status"></p>
+<section id="out" hidden><h2 id="key"></h2><p id="capo"></p><div id="tl"></div>
+<p>Chords are approximate (major and minor only). Check them by ear.</p></section>
+</main><script src="./chords.js"></script><script src="./app.js"></script></body></html>

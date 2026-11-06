@@ -5,8 +5,8 @@ One-time setup: `npm install`. The smoke suite uses the installed Google Chrome 
 | Command | What it runs |
 |---|---|
 | `npm test` | every suite against a local copy of this folder |
-| `npm test -- --site=https://test.chord-listener.pages.dev` | the smoke suite against the Test site (unit suite still runs on the local code) |
-| `npm test -- --site=https://chord-listener.pages.dev` | the same against Production |
+| `npm test -- --site=https://test.tianrui-chord-listener.pages.dev` | the smoke suite against the Test site (unit suite still runs on the local code) |
+| `npm test -- --site=https://tianrui-chord-listener.pages.dev` | the same against Production |
 
 Each run prints a count per suite and exits non-zero if anything failed.
 

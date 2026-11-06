@@ -13,7 +13,7 @@ Each run prints a count per suite and exits non-zero if anything failed.
 | Suite | File | Covers |
 |---|---|---|
 | unit | `run.js` | chord detection on synthetic audio: single chords, a progression in order, key, capo suggestion, silence |
-| smoke | `smoke.js` | page loads with no console errors; fits a 375px phone; TEST badge shows `TEST v<version>` off Production and is absent on Production; offline cache is named after `version.js` |
+| smoke | `smoke.js` | page loads with no console errors; fits a 375px phone; TEST badge shows `TEST v<version>` off Production and is absent on Production; offline cache is named after `version.js`; another app's cache on the same origin survives the service worker (local run only) |
 
 Screenshots go to `<system temp>/chord-listener-tests/`, never into the repo.
 `serve.js` is a tiny static server for local runs; `config.js` holds what differs between repos.

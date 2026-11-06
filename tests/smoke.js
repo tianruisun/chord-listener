@@ -73,6 +73,20 @@ async function run(site, { local = false } = {}) {
       check(`no TEST badge when served as ${host}`, !(await prod.page.$('#testBadge')));
       check(`no console errors when served as ${host}`, prod.errors.length === 0, prod.errors.join(' | '));
       await prod.context.close();
+
+      // Other apps can share this origin (e.g. tianruisun.github.io); their caches must survive our service worker.
+      const shared = await browser.newContext();
+      const page = await shared.newPage();
+      await page.goto(site + 'version.js');
+      await page.evaluate(() => caches.open('other-app-v1'));
+      await page.goto(site, { waitUntil: 'load' });
+      const keys = await page.evaluate(async () => {
+        await navigator.serviceWorker.ready;
+        await new Promise(r => setTimeout(r, 1500));
+        return caches.keys();
+      });
+      check("another app's cache on the same origin survives", keys.includes('other-app-v1'), keys.join(','));
+      await shared.close();
     }
   } finally {
     await browser.close();

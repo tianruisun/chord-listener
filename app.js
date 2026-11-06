@@ -23,4 +23,4 @@ $('#rec').onclick=async()=>{
   rec.onstop=()=>{st.getTracks().forEach(t=>t.stop());$('#rec').textContent='Record from microphone';const b=new Blob(chunks);rec=null;b.arrayBuffer().then(run);};
   rec.start();$('#rec').textContent='Stop and analyse';
  }catch(e){$('#status').textContent='Microphone blocked: '+e.message;}};
-if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
+if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'});

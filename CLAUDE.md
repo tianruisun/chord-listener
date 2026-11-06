@@ -3,9 +3,11 @@
 In-browser PWA that listens to uploaded or recorded audio and estimates the chords, key and an easy capo position, for guitar players.
 
 ## Environments
-- Production: https://tianrui-chord-listener.pages.dev   (branch main) (not live yet: waiting for Cloudflare setup)
-- Test:       https://test.tianrui-chord-listener.pages.dev   (branch test) (not live yet: waiting for Cloudflare setup)
-- Old address https://tianruisun.github.io/chord-listener/ is GitHub Pages from `main`, until NEW_REPO_SETUP.md Part 3.
+- Production: https://tianrui-chord-listener.pages.dev   (branch main)
+- Production, second address: https://tianruisun.github.io/chord-listener/   (GitHub Pages, branch main; kept by Terry's decision 2026-11-06)
+- Test:       https://test.tianrui-chord-listener.pages.dev   (branch test)
+- The GitHub Pages address shares its origin, and so its Cache Storage and localStorage, with other apps under tianruisun.github.io.
+  Only touch keys and caches that start with this app's own prefix (`chords-`).
 
 ## Tech
 - Plain HTML/CSS/JS, no build step. Cloudflare build settings: preset None, no build command, output `/`.
@@ -14,6 +16,7 @@ In-browser PWA that listens to uploaded or recorded audio and estimates the chor
 ## Tests
 - Run all: `npm test`
 - Run against Test site: `npm test -- --site=https://test.tianrui-chord-listener.pages.dev`
+- Every run ends within its time limits (unit 5 min, smoke 3 min, any single browser step 20 s) and reports a failure instead of hanging.
 
 ## Project rules (override the master rules)
 - Languages: English only for now (the app has never had Chinese text).

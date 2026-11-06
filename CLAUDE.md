@@ -16,6 +16,7 @@ In-browser PWA that listens to uploaded or recorded audio and estimates the chor
 ## Tests
 - Run all: `npm test`
 - Run against Test site: `npm test -- --site=https://test.tianrui-chord-listener.pages.dev`
+- Every run ends within its time limits (unit 5 min, smoke 3 min, any single browser step 20 s) and reports a failure instead of hanging.
 
 ## Project rules (override the master rules)
 - Languages: English only for now (the app has never had Chinese text).

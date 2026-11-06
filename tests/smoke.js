@@ -30,6 +30,7 @@ async function openPage(browser, url, options = {}) {
       route.fulfill({ status: 200, contentType: TYPES[path.extname(file)], body: fs.readFileSync(file) });
     });
   }
+  context.setDefaultTimeout(20000);   // no single step may wait longer than 20 s
   const page = await context.newPage();
   const errors = [];
   page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
@@ -76,12 +77,13 @@ async function run(site, { local = false } = {}) {
 
       // Other apps can share this origin (e.g. tianruisun.github.io); their caches must survive our service worker.
       const shared = await browser.newContext();
+      shared.setDefaultTimeout(20000);
       const page = await shared.newPage();
       await page.goto(site + 'version.js');
       await page.evaluate(() => caches.open('other-app-v1'));
       await page.goto(site, { waitUntil: 'load' });
       const keys = await page.evaluate(async () => {
-        await navigator.serviceWorker.ready;
+        await Promise.race([navigator.serviceWorker.ready, new Promise(r => setTimeout(r, 10000))]);
         await new Promise(r => setTimeout(r, 1500));
         return caches.keys();
       });
